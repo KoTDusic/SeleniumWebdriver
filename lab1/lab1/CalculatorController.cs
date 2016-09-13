@@ -22,7 +22,19 @@ namespace lab1
         public void ReadValuesAndCalculate()
         {
             Console.Write("ведите операцию");
-            operation = Convert.ToChar(Console.ReadLine()); //.ReadKey().KeyChar
+            while (true)
+            {
+                try
+                {
+                    operation = Convert.ToChar(Console.ReadLine()); //.ReadKey().KeyChar
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("ошибка в вводе операции, введите корректную операцию");
+
+                }
+            }
             Console.WriteLine();
             Console.Write("операция принята");
             Console.WriteLine();
