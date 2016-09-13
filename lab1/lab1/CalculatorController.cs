@@ -11,7 +11,7 @@ namespace lab1
         Calculator calculator;
         double value1, value2;
         char operation;
-        const String description = "калькулятор v0.1, доступные операции: сложение(+),вычитание(-),умножение(*), деление(/)";
+        const String description = "калькулятор v0.2, доступные операции: сложение(+),вычитание(-),умножение(*), деление(/)";
 
         public CalculatorController()
         {
