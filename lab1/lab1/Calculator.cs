@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab1
 {
-    class Calculator
+    public class Calculator
     {
         double result;
         public Calculator()
