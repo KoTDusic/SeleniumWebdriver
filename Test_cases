@@ -12,3 +12,19 @@
 3. В строке Avatar image нажать browse, выбрать любую картинку меньше чем 140*140 пикселей
 4. Нажать save changes внизу страницы
 Ожидание результата - вверху страницы появится надпись: Your profile has been updated
+
+Тест-кейс №3 Загрузка своей игры
+1. Зайти на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. Нажать dev -> upload you game
+3. Ввести:
+title = test_[Unix time] - например test_1474985270
+game_description = test
+Category = action
+4. нажимаем upload
+5. нажимаем browse в строке Game File и выбираем любую пустую swf,
+нажимаем browse в строке Game Icon  и выбираем любую png 250 × 200 
+ставим галочки на Terms of service agreement, Verify creator of game, Verify no ads, Verify no microtransactions
+6. нажимаем upload
+7. открывается страница с игрой, нажимаем Publish
+Ожидаемый результат заходим на http://www.kongregate.com/accounts/my_first_test, внизу страницы
+My_games -> Recent, игра с названием, данным в title на 3 шаге, должна быть в списке
