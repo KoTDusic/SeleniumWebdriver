@@ -1,1 +1,14 @@
+Тест-кейс №1 Авторизация
+1.	Зайти на сайт http://www.kongregate.com/
+2.	Заполнить поля:
+    Email Address = testlabatestlaba@gmail.com,
+    Password = 12345
+3.  Нажать SIGN IN
+Ожидание результата:  должно перейти на страницу, содержащую имя пользователя my_first_test 
 
+Тест-кейс №2 Смена аватара
+1. Зайти на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. Нажать Edit Profile
+3. В строке Avatar image нажать browse, выбрать любую картинку меньше чем 140*140 пикселей
+4. Нажать save changes внизу страницы
+Ожидание результата - вверху страницы появится надпись: Your profile has been updated
