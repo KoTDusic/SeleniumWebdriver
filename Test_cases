@@ -1,0 +1,156 @@
+баг 1:
+зарегистрировал пользователя с
+Email Address = test@gmail.com,
+Password = 12345
+When were you born? = 1990
+Username = new_test_user
+при входе с new_test_user и пароле 12345 захожу на того же, кого регистрировал,
+а при логине test@gmail.com и пароля 12345 захожу на чужой аккаунт Jake2019
+
+Тест-кейс №1 Авторизация
+1.	Зайти на сайт http://www.kongregate.com/
+2.	Заполнить поля:
+    Email Address = testlabatestlaba@gmail.com,
+    Password = 12345
+3.  Нажать SIGN IN
+Ожидание результата:  в верхнем правом углу появится строка содержащая имя пользователя my_first_test 
+
+Тест-кейс №2 Смена аватара
+1. Зайти на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. Нажать Edit Profile
+3. В строке Avatar image нажать browse, выбрать любую картинку меньше чем 140*140 пикселей
+4. Нажать save changes внизу страницы
+Ожидание результата - вверху страницы появится надпись: Your profile has been updated
+
+Тест-кейс №3 Загрузка своей игры
+1. Зайти на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. Нажать dev -> upload you game
+3. Ввести:
+title = test_[Unix time] - например test_1474985270
+game_description = test
+Category = action
+4. нажимаем upload
+5. нажимаем browse в строке Game File и выбираем любую пустую swf,
+нажимаем browse в строке Game Icon  и выбираем любую png 250 × 200 
+ставим галочки на Terms of service agreement, Verify creator of game, Verify no ads, Verify no microtransactions
+6. нажимаем upload
+7. открывается страница с игрой, нажимаем Publish
+Ожидаемый результат: заходим на http://www.kongregate.com/accounts/my_first_test, внизу страницы
+My_games -> Recent, игра с названием, данным в title на 3 шаге, должна быть в списке
+
+Тест-кейс №4 Загрузка своей игры
+1. заходим на http://www.kongregate.com/
+2. в поле Search games & more вводим QbQbQb
+3. нажимаем Enter
+Ожидаемый результат: в первой строке игра с названием "QbQbQb" и описанием "Musical, arcade-puzzle game for one or two players."
+
+Тест-кейс №5 Рекоммендуемая игра на основе выбранной
+1. заходим на http://www.kongregate.com/games/Chman/robot-phone-home
+2. нажимаем справа вкладку MORE GAMES 
+Ожидаемый результат: первой игрой в списке должна быть Zombie Crypt с пометками PLATFORM, ZOMBIE, PUZZLE
+
+Тест-кейс №6 Оценка игры
+1. заходим на http://www.kongregate.com/games/Chman/robot-phone-home
+2. нажимаем на третью звёздочку в поле Your Rating под игрой
+3. закрываем браузер
+4. открываем браузер и снова заходим на http://www.kongregate.com/games/Chman/robot-phone-home
+Ожидаемый результат: в поле Your Rating 3 звёздочки из 5 должны быть синими
+
+Тест-кейс №7 Проверка функции Last Played в профиле
+1. заходим на http://www.kongregate.com/games/SoulGame/swords-and-souls
+2. ждём загрузки игры
+3. заходим на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+Ожидаемый результат: под именем пользователя должно быть написанно "LATEST ACTIVITY: PLAYED SWORDS AND SOULS"
+
+Тест-кейс №8 Смена пароля
+1. заходим на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. нажимаем на иконку справа сверху, и Settings в выпадающем меню
+3. открываем вкладку PASSWORD
+4. вводим:
+Original Password - 12345
+Password - 123456
+5. нажимаем Change password
+6. нажимаем на иконку справа сверху, и Sign out в выпадающем меню
+7.	Заполнить поля:
+    Email Address = testlabatestlaba@gmail.com,
+    Password = 12345
+8.  Нажать SIGN IN
+Ожидаемый результат: всплывающее окошко с надписью "No account with that email address and password could be found."
+9. Вводим Email Address = testlabatestlaba@gmail.com,
+    Password = 123456
+10.  Нажать SIGN IN
+11. нажимаем на иконку справа сверху, и Settings в выпадающем меню
+12. открываем вкладку PASSWORD
+13. вводим:
+Original Password - 123456
+Password - 12345
+14. нажимаем Change password
+Ожидаемый результат: надпись "Your password has been changed." над именем пользователя
+
+Тест-кейс №9 Запись в ACTIVITY FEED
+1. заходим на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. нажимаем на "Start typing to leave my_first_test a shout..."
+3. Ввести текст:test_[Unix time] - например "test_1474985270"
+4. нажать Shout
+Ожидаемый результат: появляется запись: "my_first_test posted:" с текстом, введённым на 3 шаге
+
+Тест-кейс №10 like записи ACTIVITY FEED
+1. заходим на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
+2. нажимаем Like на самый верхний пост в ACTIVITY FEED
+3. закрываем браузер
+4. заходим на страницу http://www.kongregate.com/accounts/my_first_test
+ожидаемый результат:надпись Liked (1) в самом верхнем посту в ACTIVITY FEED
+
+Тест-кейс №11 добавление/удаление в друзья
+1. заходим на страницу http://www.kongregate.com/accounts/KoTDusic, будучи авторизованным пользователем my_first_test
+2. нажимаем +Friend
+Ожидаемый результат: на странице http://www.kongregate.com/accounts/my_first_test 
+в поле Friends, появился KoTDusic
+3. Нажимаем Unfriend
+4. Обновляем страницу
+Ожидаемый результат: в поле FRIENDS надпись Add some friends to compare badges, high scores, and favorite games!
+
+Тест-кейс №12 личное сообщение
+1.	Зайти на сайт http://www.kongregate.com/ будучи неавторизованным
+2.	авторизуемся с:
+    Login = new_test_user,
+    Password = 12345
+3.  Нажать SIGN IN
+4. переходим на страницу http://www.kongregate.com/accounts/my_first_test
+5. нажимаем Private Message
+6. Вводим текст:test_[Unix time] - например "test_1474985270"
+7. Нажимаем Send
+8. Нажимаем в верхнем правом углу, иконку опций->Sign out
+9. Вводим 
+    Username or Email = testlabatestlaba@gmail.com,
+    Password = 12345
+10. Нажимаем Sign in
+11. Переходим на http://www.kongregate.com/accounts/my_first_test/private_messages
+Ожидаемый результат: сообщение от new_test_user с текстом, введённым на 6 шаге 
+
+Тест-кейс №13 проверка функции mute
+1. Заходим на http://www.kongregate.com/accounts/new_test_user, будучи авторизованным пользователем my_first_test
+2. нажимаем иконку шестерёнки -> mute
+3. нажимаем Sign out, авторизуемся пользователем new_test_user
+4. заходим на http://www.kongregate.com/accounts/my_first_test
+5. нажимаем Private Message
+6. пишем 123 в тексте сообщения
+7. нажимаем Send
+Ожидаемый результат: красная надпись над полем ввода "Recipient is not accepting your communications"
+8.нажимаем Sign out, авторизуемся пользователем my_first_test
+9. заходим на http://www.kongregate.com/accounts/new_test_user
+10. нажимаем иконку шестерёнки -> unmute
+
+Тест-кейс №14 проверка плейлиста
+1. Заходим на http://www.kongregate.com/games/SoulGame/swords-and-souls, будучи авторизованным пользователем my_first_test
+2. Нажимаем кнопку Playlist под игрой
+3. обновляем страницу
+Ожидаемый результат: цифра рядом с значком play вверху страницы, изменилась с 0 на 1
+4. Нажимаем кнопку Playlist под игрой
+
+Тест-кейс №15 проверка функции Favorite
+1. Заходим на http://www.kongregate.com/games/SoulGame/swords-and-souls, будучи авторизованным пользователем my_first_test
+2. Нажимаем кнопку Favorite под игрой
+3. обновляем страницу
+Ожидаемый результат: цифра рядом с значком сердечка вверху страницы, изменилась с 0 на 1
+4. Нажимаем кнопку undo под игрой
