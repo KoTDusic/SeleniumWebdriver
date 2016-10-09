@@ -17,8 +17,8 @@ namespace SeleniumTest
         public void Setup()
         {
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(20));
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(20));
         }
         public void Login(string name,string password)
         {
