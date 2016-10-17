@@ -9,9 +9,10 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace TestFramework.Pages
 {
     
-    class MainPage
+    public class MainPage
     {
         private const string BASE_URL = "http://www.kongregate.com/";
+
         private IWebDriver driver;
         [FindsBy(How = How.Id, Using = "welcome_username")]
         private IWebElement login;
@@ -21,7 +22,10 @@ namespace TestFramework.Pages
         private IWebElement login_button;
         [FindsBy(How = How.XPath, Using = "//span[contains(@class, 'username_holder')]")]
         private IWebElement name_box;
-        
+        [FindsBy(How = How.Id, Using = "game_title")]
+        private IWebElement search_game_field;
+        [FindsBy(How = How.Id, Using = "nav_search_submit_button")]
+        private IWebElement search_game_button;
         private IWebElement profile_button;
        /* [FindsBy(How = How.XPath, Using = "//[@id='welcome_box_sign_out']")]
         private IWebElement logout_button;*/
@@ -54,6 +58,12 @@ namespace TestFramework.Pages
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("signoutFromSite()");
             //logout_button.Click();
+        }
+        public SearchPage FindGame(string name)
+        {
+            search_game_field.SendKeys(name);
+            search_game_button.Click();
+            return new SearchPage(driver);
         }
     }
 }

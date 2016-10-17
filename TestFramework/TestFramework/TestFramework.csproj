@@ -73,7 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\EditProfile.cs" />
+    <Compile Include="Pages\GamePage.cs" />
+    <Compile Include="Pages\GameUploadPageStep1.cs" />
     <Compile Include="Pages\Profile.cs" />
+    <Compile Include="Pages\SearchPage.cs" />
     <Compile Include="Steps\Steps.cs" />
     <Compile Include="Tests\Tests.cs" />
     <Compile Include="DriverInstance.cs" />

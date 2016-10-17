@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace TestFramework.Pages
 {
-    class Profile
+    public class Profile
     {
         private IWebDriver driver;
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Edit Profile')]")]

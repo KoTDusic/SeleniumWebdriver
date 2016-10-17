@@ -9,7 +9,7 @@ using System.IO;
 
 namespace TestFramework.Pages
 {
-    class EditProfile
+    public class EditProfile
     {
         private const string BASE_URL = "http://www.kongregate.com/";
         private IWebDriver driver;

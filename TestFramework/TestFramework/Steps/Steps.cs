@@ -34,6 +34,7 @@ namespace TestFramework
         public bool GoToEditProfileAndUploadPhoto()
         {
             MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
             EditProfile editPage = mainPage.ProfileClick().ClickEditProfile();
             Profile profilePage=editPage.UploadPhoto();
             return profilePage.ContainSucessMessage();
@@ -41,6 +42,28 @@ namespace TestFramework
         public void LogOut()
         {
             new MainPage(driver).LogOut();
+        }
+        public bool SerachGame(string name)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            SearchPage searchPage = mainPage.FindGame(name);
+            return searchPage.ContainGame(name);
+        }
+        public bool SearchAndNavigateGameAndCheckRecomendedList(string game_name,string check_game)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            SearchPage searchPage = mainPage.FindGame(game_name);
+            GamePage gamePage = searchPage.OpenGame(game_name);
+            gamePage.MoreGamesClick();
+            return gamePage.CheckGameInRecommendedList(check_game);
+        }
+        public void PublishGame()
+        {
+            GameUploadPageStep1 devPage = new GameUploadPageStep1(driver);
+            devPage.OpenPage();
+            devPage.FillFields();
         }
     }
 }

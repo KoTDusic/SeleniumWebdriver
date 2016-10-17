@@ -1,4 +1,4 @@
-баг 1:
+﻿баг 1:
 зарегистрировал пользователя с
 Email Address = test@gmail.com,
 Password = 12345
@@ -38,16 +38,17 @@ Category = action
 Ожидаемый результат: заходим на http://www.kongregate.com/accounts/my_first_test, внизу страницы
 My_games -> Recent, игра с названием, данным в title на 3 шаге, должна быть в списке
 
-Тест-кейс №4 Загрузка своей игры
+Тест-кейс №4 Поиск игры
 1. заходим на http://www.kongregate.com/
 2. в поле Search games & more вводим QbQbQb
-3. нажимаем Enter
-Ожидаемый результат: в первой строке игра с названием "QbQbQb" и описанием "Musical, arcade-puzzle game for one or two players."
+3. нажимаем на значок поиска
+Ожидаемый результат: в первой строке игра с названием "QbQbQb"
 
 Тест-кейс №5 Рекоммендуемая игра на основе выбранной
-1. заходим на http://www.kongregate.com/games/Chman/robot-phone-home
-2. нажимаем справа вкладку MORE GAMES 
-Ожидаемый результат: первой игрой в списке должна быть Zombie Crypt с пометками PLATFORM, ZOMBIE, PUZZLE
+1. в поле Search games & more вводим Robot Phone Home
+2. нажимаем на значок поиска
+3. нажимаем справа вкладку MORE GAMES 
+Ожидаемый результат: первой игрой в списке должна быть Zombie Crypt
 
 Тест-кейс №6 Оценка игры
 1. заходим на http://www.kongregate.com/games/Chman/robot-phone-home
