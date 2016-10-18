@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Drawing.Imaging;
 
 namespace TestFramework
 {
@@ -50,6 +51,7 @@ namespace TestFramework
         {
             steps.LoginKongregate(email_first, password_first);
             steps.PublishGame();
+            //((ITakesScreenshot)DriverInstance.GetInstance()).GetScreenshot().SaveAsFile(@"C:\Prokopovich\TestFramework\TestFramework\test1.jpg", ImageFormat.Jpeg);
         }
         [Test]
         public void _4_GameSerch()

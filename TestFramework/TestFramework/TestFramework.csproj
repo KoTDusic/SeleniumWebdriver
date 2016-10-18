@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Pages\EditProfile.cs" />
     <Compile Include="Pages\GamePage.cs" />
+    <Compile Include="Pages\GameUploadPageStep2.cs" />
     <Compile Include="Pages\GameUploadPageStep1.cs" />
     <Compile Include="Pages\Profile.cs" />
     <Compile Include="Pages\SearchPage.cs" />
