@@ -24,7 +24,7 @@ namespace TestFramework.Pages
         }
         public Profile UploadPhoto()
         {
-            string avatar = @"d:\fix\" + new Random().Next(1, 4) + ".jpg";//Path.GetFullPath(@"Res\"+new Random().Next(1,4)+".jpg");
+            string avatar = Path.GetFullPath(@"TestFramework\Res\" + new Random().Next(1, 4) + ".jpg");//@"d:\fix\" + new Random().Next(1, 4) + ".jpg";
             upload_button.SendKeys(avatar);
             submit_button.Click();
             return new Profile(driver);    
