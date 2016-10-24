@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestFramework.Pages;
 using OpenQA.Selenium;
+using System.Threading;
 
 namespace TestFramework
 {
@@ -73,6 +74,77 @@ namespace TestFramework
             mainPage.OpenPage();
             Profile profilePage = mainPage.ProfileClick();
             return profilePage.HasGameInRecent(game_name);
+        }
+        public bool RateGame(string url)
+        {
+            GamePage gamePage = new GamePage(driver);
+            gamePage.OpenPage(url);
+            gamePage.SetRate(3);
+            Wait(2000);
+            string rate = gamePage.GetCurrentGameRate();
+            driver.Navigate().Refresh();
+            string new_rate=gamePage.GetCurrentGameRate();
+            bool passed=String.Equals(rate,new_rate);
+            gamePage.SetRate(1);
+            return passed;
+        }
+        public bool CheckLastPlayed(string game_name)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            Profile profilePage = mainPage.ProfileClick();
+            string game=profilePage.GetLastPlayedGame();
+            return String.Equals(game.ToLower(), game_name.ToLower());
+        }
+        public void OpenGamePage(string uri)
+        {
+            GamePage gamePage = new GamePage(driver);
+            gamePage.OpenPage(uri);
+        }
+        public void Wait(int time)
+        {
+            Thread.Sleep(time);
+        }
+        public void ChangePasswordAndLogout(string current_password,string new_password)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.ProfileClick().ClickEditProfile().ChangePassword(current_password, new_password);
+            mainPage.LogOut();
+        }
+        public bool TryLogin(string login,string password)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.Login(login, password);
+            string ErrorMessage = "No account with that email address and password could be found.";
+            string GetedReturnMessage = mainPage.GetErrorMessage();
+            return !String.Equals(GetedReturnMessage.ToLower(), ErrorMessage.ToLower());
+        }
+        public bool TryMakePostInFeed(string text)
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            Profile profilePage = mainPage.ProfileClick();
+            profilePage.MakePost(text);
+            RefreshPage();
+            return profilePage.HasPostInFeed(text);
+        }
+        public bool TryLikeTopPost()
+        {
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            Profile profilePage = mainPage.ProfileClick();
+            profilePage.ClickLikeButtonOnTopPost();
+            RefreshPage();
+            bool result = profilePage.TopPostIsLiked();
+            profilePage.ClickLikeButtonOnTopPost();
+            return result;
+        }
+        public void RefreshPage()
+        {
+            driver.Navigate().Refresh();
+
         }
     }
 }

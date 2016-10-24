@@ -53,8 +53,7 @@ My_games -> Recent, игра с названием, данным в title на 3
 Тест-кейс №6 Оценка игры
 1. заходим на http://www.kongregate.com/games/Chman/robot-phone-home
 2. нажимаем на третью звёздочку в поле Your Rating под игрой
-3. закрываем браузер
-4. открываем браузер и снова заходим на http://www.kongregate.com/games/Chman/robot-phone-home
+3. обновляем страницу
 Ожидаемый результат: в поле Your Rating 3 звёздочки из 5 должны быть синими
 
 Тест-кейс №7 Проверка функции Last Played в профиле
@@ -93,13 +92,13 @@ Password - 12345
 2. нажимаем на "Start typing to leave my_first_test a shout..."
 3. Ввести текст:test_[Unix time] - например "test_1474985270"
 4. нажать Shout
+5. обновляем страницу
 Ожидаемый результат: появляется запись: "my_first_test posted:" с текстом, введённым на 3 шаге
 
 Тест-кейс №10 like записи ACTIVITY FEED
 1. заходим на страницу http://www.kongregate.com/accounts/my_first_test, будучи авторизованным этим пользователем
 2. нажимаем Like на самый верхний пост в ACTIVITY FEED
-3. закрываем браузер
-4. заходим на страницу http://www.kongregate.com/accounts/my_first_test
+3. обновляем страницу
 ожидаемый результат:надпись Liked (1) в самом верхнем посту в ACTIVITY FEED
 
 Тест-кейс №11 добавление/удаление в друзья

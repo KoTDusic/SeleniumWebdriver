@@ -14,6 +14,8 @@ namespace TestFramework.Pages
 
         [FindsBy(How = How.Id, Using = "more_games")]
         private IWebElement more_games_button;
+        
+        //li[@id='quicklinks_star_ratings_block']//li/a
         public GamePage(IWebDriver driver)
         {
             this.driver = driver;
@@ -22,6 +24,10 @@ namespace TestFramework.Pages
         public void MoreGamesClick()
         {
             more_games_button.Click();
+        }
+        public void OpenPage(string url)
+        {
+            driver.Navigate().GoToUrl(url);
         }
         public bool CheckGameInRecommendedList(string game_name)
         {
@@ -32,6 +38,16 @@ namespace TestFramework.Pages
                 if (String.Equals(elem.Text, game_name)) return true;
             }
             return false;
+        }
+        public string GetCurrentGameRate()
+        {
+            IWebElement colored_stars=driver.FindElement(By.XPath("//li[@id='quicklinks_star_ratings_block']/ul/li[1]"));
+            return colored_stars.GetCssValue("width");
+        }
+        public void SetRate(int value)
+        {
+            IReadOnlyCollection<IWebElement> game_tags = driver.FindElements(By.XPath("//li[@id='quicklinks_star_ratings_block']/ul//li/a"));
+            game_tags.ElementAt(value-1).Click();
         }
     }
 }

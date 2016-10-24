@@ -48,6 +48,10 @@ namespace TestFramework.Pages
         {
             return name_box.Text;
         }
+        public string GetErrorMessage()
+        {
+            return driver.FindElement(By.XPath("//h1[@id='lightboxlogin_message']")).Text.Trim();
+        }
         public Profile ProfileClick()
         {
             profile_button = driver.FindElement(By.XPath("//ul[@id='nav_welcome_box']/li[1]/a"));
