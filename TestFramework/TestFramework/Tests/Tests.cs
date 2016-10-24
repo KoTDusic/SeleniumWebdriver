@@ -23,6 +23,7 @@ namespace TestFramework
         [SetUp]
         public void Init()
         {
+            //((ITakesScreenshot)DriverInstance.GetInstance()).GetScreenshot().SaveAsFile(@"C:\Prokopovich\TestFramework\TestFramework\test1.jpg", ImageFormat.Jpeg);
             steps = new Steps();
             steps.InitBrowser();
         }
@@ -50,8 +51,8 @@ namespace TestFramework
         public void _3_GameUploading()
         {
             steps.LoginKongregate(email_first, password_first);
-            steps.PublishGame();
-            //((ITakesScreenshot)DriverInstance.GetInstance()).GetScreenshot().SaveAsFile(@"C:\Prokopovich\TestFramework\TestFramework\test1.jpg", ImageFormat.Jpeg);
+            Assert.IsTrue(steps.PublishGame());
+            
         }
         [Test]
         public void _4_GameSerch()

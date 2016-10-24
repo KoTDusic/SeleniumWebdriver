@@ -59,11 +59,20 @@ namespace TestFramework
             gamePage.MoreGamesClick();
             return gamePage.CheckGameInRecommendedList(check_game);
         }
-        public void PublishGame()
+        public bool PublishGame()
         {
-            GameUploadPageStep1 devPage = new GameUploadPageStep1(driver);
-            devPage.OpenPage();
-            devPage.FillFields();
+            GameUploadPageStep1 uploadPage1 = new GameUploadPageStep1(driver);
+            uploadPage1.OpenPage();
+            string game_name = NameGenerator.GenerateUnicName();
+            uploadPage1.FillFields(game_name);
+            GameUploadPageStep2 uploadPage2 = uploadPage1.PressContinue();
+            uploadPage2.FillFields();
+            uploadPage2.ClickUpload();
+            uploadPage2.WaitUpload(game_name);
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            Profile profilePage = mainPage.ProfileClick();
+            return profilePage.HasGameInRecent(game_name);
         }
     }
 }

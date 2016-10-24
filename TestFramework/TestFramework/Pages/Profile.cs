@@ -13,6 +13,8 @@ namespace TestFramework.Pages
         private IWebDriver driver;
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Edit Profile')]")]
         private IWebElement EditProfileButton;
+        [FindsBy(How = How.XPath, Using = "//a[text()='Recent']")]
+        private IWebElement ResentPlay;
         
         public Profile(IWebDriver driver)
         {
@@ -36,6 +38,16 @@ namespace TestFramework.Pages
             {
                 return false;
             }
+        }
+        public bool HasGameInRecent(string gameName)
+        {
+           ResentPlay.Click();
+           IReadOnlyCollection<IWebElement> games = driver.FindElements(By.XPath("//div[@id='dynamic-tab-1']/ul//p/strong/a"));
+            foreach(IWebElement game in games)
+            {
+                if (game.Text.Trim() == gameName) return true;
+            }
+            return false;
         }
     }
 }

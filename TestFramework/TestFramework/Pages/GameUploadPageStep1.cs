@@ -30,12 +30,16 @@ namespace TestFramework.Pages
         {
             driver.Navigate().GoToUrl(DEVELOPER_URL);
         }
-        public void FillFields()
+        public void FillFields(string gameName)
         {
-            title_field.SendKeys("test_" + DateTimeOffset.UtcNow.UtcTicks.ToString());
+            title_field.SendKeys(gameName);
             game_description_field.SendKeys("test");
             game_category_field.SendKeys("Action");
+        }
+        public GameUploadPageStep2 PressContinue()
+        {
             continue_button.Click();
+            return new GameUploadPageStep2(driver);
         }
     }
 }

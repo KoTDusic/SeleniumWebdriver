@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System.IO;
+
 
 namespace TestFramework.Pages
 {
@@ -24,7 +24,7 @@ namespace TestFramework.Pages
         }
         public Profile UploadPhoto()
         {
-            string avatar = Path.GetFullPath(@"TestFramework\Res\" + new Random().Next(1, 4) + ".jpg");//@"d:\fix\" + new Random().Next(1, 4) + ".jpg";
+            string avatar = DriverInstance.GetFilesDirectory() + new Random().Next(1, 4) + ".jpg";
             upload_button.SendKeys(avatar);
             submit_button.Click();
             return new Profile(driver);    
