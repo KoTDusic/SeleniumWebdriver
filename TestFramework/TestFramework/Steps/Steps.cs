@@ -40,10 +40,12 @@ namespace TestFramework
             Profile profilePage=editPage.UploadPhoto();
             return profilePage.ContainSucessMessage();
         }
+
         public void LogOut()
         {
             new MainPage(driver).LogOut();
         }
+
         public bool SerachGame(string name)
         {
             MainPage mainPage = new MainPage(driver);

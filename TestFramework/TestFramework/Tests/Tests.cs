@@ -59,7 +59,7 @@ namespace TestFramework
 
         }
         [Test]
-        public void _4_GameSerch()
+        public void _4_GameSerchByName()
         {
             Assert.IsTrue(steps.SerachGame(game_for_search));
         }

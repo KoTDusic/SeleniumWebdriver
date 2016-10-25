@@ -14,8 +14,10 @@ namespace TestFramework.Pages
         private const string DEVELOPER_URL = "http://www.kongregate.com/games/new";
         [FindsBy(How = How.Id, Using = "games-_title")]
         private IWebElement title_field;
+
         [FindsBy(How = How.XPath, Using = "//dd[@id='game_summary_block']//textarea")]
         private IWebElement game_description_field;
+
         [FindsBy(How = How.Id, Using = "game_category_id")]
         private IWebElement game_category_field;
         [FindsBy(How = How.XPath, Using = "//div[@id='publish_submit']/input")]
