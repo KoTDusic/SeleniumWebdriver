@@ -13,8 +13,8 @@ namespace TestFramework
         private DriverInstance() { }
         public static string GetFilesDirectory()
         {
-            //return Path.GetFullPath(@"TestFramework\Res\");
-            return @"d:\fix\";
+            return Path.GetFullPath(@"TestFramework\Res\");
+            //return @"d:\fix\";
         }
         public static IWebDriver GetInstance()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TestFramework.Pages;
 using OpenQA.Selenium;
 using System.Threading;
-
+//git/cmd в качестве имени версия программы
 namespace TestFramework
 {
     public class Steps

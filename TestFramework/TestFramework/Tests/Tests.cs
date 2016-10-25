@@ -55,7 +55,8 @@ namespace TestFramework
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.PublishGame());
-            
+            steps.LogOut();
+
         }
         [Test]
         public void _4_GameSerch()
@@ -73,6 +74,7 @@ namespace TestFramework
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.RateGame(game_uri));
+            steps.LogOut();
         }
         [Test]
         public void _7_LastPlayedTest()
@@ -81,6 +83,7 @@ namespace TestFramework
             steps.OpenGamePage(game2_uri);
             steps.Wait(2000);
             Assert.IsTrue(steps.CheckLastPlayed(game2_name));
+            steps.LogOut();
         }
         [Test]
         public void _8_ChangePassword()
@@ -97,12 +100,14 @@ namespace TestFramework
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.TryMakePostInFeed(NameGenerator.GenerateUnicName()));
+            steps.LogOut();
         }
         [Test]
         public void _10_LikePostInFeed()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.TryLikeTopPost());
+            steps.LogOut();
         }
     }
 }
