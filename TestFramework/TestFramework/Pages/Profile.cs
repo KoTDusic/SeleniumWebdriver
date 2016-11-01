@@ -104,8 +104,7 @@ namespace TestFramework.Pages
         {
             IWebElement like_button = driver.FindElement(By.XPath(like_button_text_locator));
             string text = like_button.Text;
-            if (text.Trim().Equals("Liked")) return true;
-            else return false;
+            return text.Trim().Equals("Liked");
         }
         public void ClickFriendButton()
         {
