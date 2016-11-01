@@ -22,6 +22,9 @@ namespace TestFramework.Pages
         private IWebElement playlist_counter;
         [FindsBy(How = How.XPath, Using = "//ul[@id='nav_welcome_box']//span[@class='favorites-count']")]
         private IWebElement like_counter;
+        private string current_rating_locator = "//li[@id='quicklinks_star_ratings_block']/ul/li[1]";
+        private string stars_list_locator = "//li[@id='quicklinks_star_ratings_block']/ul//li/a";
+        private string recomended_game_list_locator = "//div[@id='more_games_tab_pane']/div/li/div//h4";
 
         public GamePage(IWebDriver driver)
         {
@@ -39,7 +42,7 @@ namespace TestFramework.Pages
         public bool CheckGameInRecommendedList(string game_name)
         {
             IReadOnlyCollection<IWebElement> game_tags =
-                driver.FindElements(By.XPath("//div[@id='more_games_tab_pane']/div/li/div//h4"));
+                driver.FindElements(By.XPath(recomended_game_list_locator));
             foreach(IWebElement elem in game_tags)
             {
                 if (String.Equals(elem.Text, game_name)) return true;
@@ -48,12 +51,12 @@ namespace TestFramework.Pages
         }
         public string GetCurrentGameRate()
         {
-            IWebElement colored_stars=driver.FindElement(By.XPath("//li[@id='quicklinks_star_ratings_block']/ul/li[1]"));
+            IWebElement colored_stars=driver.FindElement(By.XPath(current_rating_locator));
             return colored_stars.GetCssValue("width");
         }
         public void SetRate(int value)
         {
-            IReadOnlyCollection<IWebElement> game_tags = driver.FindElements(By.XPath("//li[@id='quicklinks_star_ratings_block']/ul//li/a"));
+            IReadOnlyCollection<IWebElement> game_tags = driver.FindElements(By.XPath(stars_list_locator));
             game_tags.ElementAt(value-1).Click();
         }
         public string GetLikeCount()

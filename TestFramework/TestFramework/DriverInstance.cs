@@ -14,7 +14,7 @@ namespace TestFramework
         public static string GetFilesDirectory()
         {
             return Path.GetFullPath(@"TestFramework\Res\");
-            //return @"d:\fix\";
+            //return @"d:\fix\";1
         }
         public static IWebDriver GetInstance()
         {

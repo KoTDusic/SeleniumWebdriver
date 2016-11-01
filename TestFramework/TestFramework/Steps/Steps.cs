@@ -43,7 +43,9 @@ namespace TestFramework
 
         public void LogOut()
         {
-            new MainPage(driver).LogOut();
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            mainPage.LogOut();
         }
 
         public bool SerachGame(string name)
@@ -64,6 +66,7 @@ namespace TestFramework
         }
         public bool PublishGame()
         {
+            new MainPage(driver).OpenPage();
             GameUploadPageStep1 uploadPage1 = new GameUploadPageStep1(driver);
             uploadPage1.OpenPage();
             string game_name = NameGenerator.GenerateUnicName();
@@ -201,7 +204,7 @@ namespace TestFramework
             MainPage mainPage = new MainPage(driver);
             Profile profilePage = mainPage.ProfileClick();
             profilePage.OpenMessagesPage();
-            return profilePage.GetTopRecevedMessage();
+            return profilePage.GetTopRecevedMessage().Trim();
         }
         public void RefreshPage()
         {

@@ -45,21 +45,21 @@ namespace TestFramework
             //steps.CloseBrowser();
         }
         [Test]
-        public void _1_ChekLoginingOnSite()
+        public void ChekLoginingOnSite()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.IsLoggedIn(login_first));
             steps.LogOut();
         }
         [Test]
-        public void _2_AvatarUpload()
+        public void AvatarUpload()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.GoToEditProfileAndUploadPhoto());
             steps.LogOut();
         }
         [Test]
-        public void _3_GameUploading()
+        public void GameUploading()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.PublishGame());
@@ -67,34 +67,34 @@ namespace TestFramework
 
         }
         [Test]
-        public void _4_GameSerchByName()
+        public void GameSerchByName()
         {
             Assert.IsTrue(steps.SerachGame(game_for_search));
         }
         [Test]
-        public void _5_GameRecomendations()
+        public void GameRecomendations()
         {
             Assert.IsTrue(steps.SearchAndNavigateGameAndCheckRecomendedList
                 (game_for_recomendation, game_in_recomended_list));
         }
         [Test]
-        public void _6_RateGame()
+        public void RateGame()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.RateGame(game_uri));
             steps.LogOut();
         }
         [Test]
-        public void _7_LastPlayedTest()
+        public void LastPlayedTest()
         {
             steps.LoginKongregate(email_first, password_first);
             steps.OpenGamePage(game2_uri);
-            steps.Wait(2000);
+            steps.Wait(10000);
             Assert.IsTrue(steps.CheckLastPlayed(game2_name));
             steps.LogOut();
         }
         [Test]
-        public void _8_ChangePassword()
+        public void ChangePassword()
         {
                 steps.LoginKongregate(email_first, password_first);
                 steps.ChangePasswordAndLogout(old_password, new_password);
@@ -104,28 +104,28 @@ namespace TestFramework
                 steps.ChangePasswordAndLogout(new_password, old_password);
         }
         [Test]
-        public void _9_FeedTest()
+        public void FeedTest()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.TryMakePostInFeed(NameGenerator.GenerateUnicName()));
             steps.LogOut();
         }
         [Test]
-        public void _10_LikePostInFeed()
+        public void LikePostInFeed()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.TryLikeTopPost());
             steps.LogOut();
         }
         [Test]
-        public void _11_AddFriend()
+        public void AddFriend()
         {
             steps.LoginKongregate(email_first, password_first);
             Assert.IsTrue(steps.TryAddToFriend(friend_page,friend_nick));
             steps.LogOut();
         }
         [Test]
-        public void _12_PrivateMessage()
+        public void PrivateMessage()
         {
             steps.LoginKongregate(login_second, password_second);
             string sended_message = NameGenerator.GenerateUnicName();
@@ -137,7 +137,7 @@ namespace TestFramework
             steps.LogOut();
         }
         [Test]
-        public void _13_MyteTest()
+        public void MyteTest()
         {
             steps.LoginKongregate(login_first, password_first);
             steps.ChangeUserMuteStatus(second_user_page);
@@ -152,14 +152,14 @@ namespace TestFramework
             Assert.IsTrue(result);
         }
         [Test]
-        public void _14_AddToPlaylist()
+        public void AddToPlaylist()
         {
             steps.LoginKongregate(login_first, password_first);
             Assert.IsTrue(steps.TrySetInPlaylist(game2_uri));
             steps.LogOut();
         }
         [Test]
-        public void _15_LikeGameTest()
+        public void LikeGameTest()
         {
             steps.LoginKongregate(login_first, password_first);
             Assert.IsTrue(steps.TrySetLike(game2_uri));

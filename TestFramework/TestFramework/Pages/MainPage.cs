@@ -27,8 +27,8 @@ namespace TestFramework.Pages
         [FindsBy(How = How.Id, Using = "nav_search_submit_button")]
         private IWebElement search_game_button;
         private IWebElement profile_button;
-       /* [FindsBy(How = How.XPath, Using = "//[@id='welcome_box_sign_out']")]
-        private IWebElement logout_button;*/
+        private string profile_btn_locator = "//ul[@id='nav_welcome_box']/li[1]/a";
+        private string error_message_locator = "//h1[@id='lightboxlogin_message']";
         public MainPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -50,11 +50,11 @@ namespace TestFramework.Pages
         }
         public string GetErrorMessage()
         {
-            return driver.FindElement(By.XPath("//h1[@id='lightboxlogin_message']")).Text.Trim();
+            return driver.FindElement(By.XPath(error_message_locator)).Text.Trim();
         }
         public Profile ProfileClick()
         {
-            profile_button = driver.FindElement(By.XPath("//ul[@id='nav_welcome_box']/li[1]/a"));
+            profile_button = driver.FindElement(By.XPath(profile_btn_locator));
             profile_button.Click();
             return new Profile(driver);
         }

@@ -40,6 +40,10 @@ namespace TestFramework.Pages
         private IWebElement MoreOptionsButton;
         [FindsBy(How = How.XPath, Using = "//ul[@id='profile_tools_dropdown']/li[1]/span/a")]
         private IWebElement MuteButton;
+        private string post_list_locator = "//div[@class='feed_shout_message']/p";
+        private string recent_games_list_locator = "//div[@id='dynamic-tab-1']/ul//p/strong/a";
+        private string like_button_locator = "//ul[@id='feed_items_container']/li[1]//a[@class='like_link']";
+        private string like_button_text_locator = "//ul[@id='feed_items_container']/li[1]//a[@class='like_link']/span";
         public Profile(IWebDriver driver)
         {
             this.driver = driver;
@@ -70,7 +74,7 @@ namespace TestFramework.Pages
         public bool HasGameInRecent(string gameName)
         {
            ResentPlay.Click();
-           IReadOnlyCollection<IWebElement> games = driver.FindElements(By.XPath("//div[@id='dynamic-tab-1']/ul//p/strong/a"));
+           IReadOnlyCollection<IWebElement> games = driver.FindElements(By.XPath(recent_games_list_locator));
             foreach(IWebElement game in games)
             {
                 if (game.Text.Trim() == gameName) return true;
@@ -79,7 +83,7 @@ namespace TestFramework.Pages
         }
         public bool HasPostInFeed(string text)
         {
-            IReadOnlyCollection<IWebElement> posts = driver.FindElements(By.XPath("//div[@class='feed_shout_message']/p"));
+            IReadOnlyCollection<IWebElement> posts = driver.FindElements(By.XPath(post_list_locator));
             foreach (IWebElement post in posts)
             {
                 if (post.Text.Trim().ToLower() == text.Trim().ToLower()) return true;
@@ -93,12 +97,12 @@ namespace TestFramework.Pages
         }
         public void ClickLikeButtonOnTopPost()
         {
-            IWebElement like_button = driver.FindElement(By.XPath("//ul[@id='feed_items_container']/li[1]//a[@class='like_link']"));
+            IWebElement like_button = driver.FindElement(By.XPath(like_button_locator));
             like_button.Click();
         }
         public bool TopPostIsLiked()
         {
-            IWebElement like_button = driver.FindElement(By.XPath("//ul[@id='feed_items_container']/li[1]//a[@class='like_link']/span"));
+            IWebElement like_button = driver.FindElement(By.XPath(like_button_text_locator));
             string text = like_button.Text;
             if (text.Trim().Equals("Liked")) return true;
             else return false;

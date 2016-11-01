@@ -46,7 +46,7 @@ namespace TestFramework.Pages
         }
         public void ClickUpload()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
             upload_button.Click();
         }
         public bool WaitUpload(string gameName)

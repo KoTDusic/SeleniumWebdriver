@@ -19,6 +19,7 @@ namespace TestFramework.Pages
         private IWebElement submit_button;
         [FindsBy(How = How.XPath, Using = "//a[text()='Password']")]
         private IWebElement password_btn;
+        private string change_pwd_btn_locator = "//input[@value='Change Password']";
 
         public EditProfile(IWebDriver driver)
         {
@@ -39,7 +40,7 @@ namespace TestFramework.Pages
             IWebElement current_password_input = driver.FindElement(By.Id("user_password"));
             current_original_password_input.SendKeys(current_password);
             current_password_input.SendKeys(new_password);
-            IWebElement change_password_button = driver.FindElement(By.XPath("//input[@value='Change Password']"));
+            IWebElement change_password_button = driver.FindElement(By.XPath(change_pwd_btn_locator));
             change_password_button.Click();
 
             
