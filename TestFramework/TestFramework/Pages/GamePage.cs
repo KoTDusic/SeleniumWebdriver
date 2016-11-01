@@ -14,8 +14,15 @@ namespace TestFramework.Pages
 
         [FindsBy(How = How.Id, Using = "more_games")]
         private IWebElement more_games_button;
-        
-        //li[@id='quicklinks_star_ratings_block']//li/a
+        [FindsBy(How = How.Id, Using = "below_game_favorite_link")]
+        private IWebElement like_button;
+        [FindsBy(How = How.Id, Using = "below_game_play_later_game")]
+        private IWebElement playlist_button;
+        [FindsBy(How = How.XPath, Using = "//ul[@id='nav_welcome_box']//span[@class='play-laters-count']")]
+        private IWebElement playlist_counter;
+        [FindsBy(How = How.XPath, Using = "//ul[@id='nav_welcome_box']//span[@class='favorites-count']")]
+        private IWebElement like_counter;
+
         public GamePage(IWebDriver driver)
         {
             this.driver = driver;
@@ -48,6 +55,22 @@ namespace TestFramework.Pages
         {
             IReadOnlyCollection<IWebElement> game_tags = driver.FindElements(By.XPath("//li[@id='quicklinks_star_ratings_block']/ul//li/a"));
             game_tags.ElementAt(value-1).Click();
+        }
+        public string GetLikeCount()
+        {
+            return like_counter.Text.Trim();
+        }
+        public string GetPlaylistCount()
+        {
+            return playlist_counter.Text.Trim();
+        }
+        public void ChangeLikeStatus()
+        {
+            like_button.Click();
+        }
+        public void ChangePlaylistStatus()
+        {
+            playlist_button.Click();
         }
     }
 }

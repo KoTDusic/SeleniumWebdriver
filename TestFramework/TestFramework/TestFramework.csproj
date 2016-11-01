@@ -78,6 +78,7 @@
     <Compile Include="Pages\GameUploadPageStep1.cs" />
     <Compile Include="Pages\Profile.cs" />
     <Compile Include="Pages\SearchPage.cs" />
+    <Compile Include="Pages\SendingMessagePage.cs" />
     <Compile Include="Steps\Steps.cs" />
     <Compile Include="Tests\Tests.cs" />
     <Compile Include="DriverInstance.cs" />

@@ -106,9 +106,7 @@ Password - 12345
 2. нажимаем +Friend
 Ожидаемый результат: на странице http://www.kongregate.com/accounts/my_first_test 
 в поле Friends, появился KoTDusic
-3. Нажимаем Unfriend
-4. Обновляем страницу
-Ожидаемый результат: в поле FRIENDS надпись Add some friends to compare badges, high scores, and favorite games!
+3. заходим на страницу http://www.kongregate.com/accounts/KoTDusic, Нажимаем Unfriend
 
 Тест-кейс №12 личное сообщение
 1.	Зайти на сайт http://www.kongregate.com/ будучи неавторизованным
@@ -134,7 +132,7 @@ Password - 12345
 3. нажимаем Sign out, авторизуемся пользователем new_test_user
 4. заходим на http://www.kongregate.com/accounts/my_first_test
 5. нажимаем Private Message
-6. пишем 123 в тексте сообщения
+6. пишем test_[Unix time] - например "test_1474985270" в тексте сообщения
 7. нажимаем Send
 Ожидаемый результат: красная надпись над полем ввода "Recipient is not accepting your communications"
 8.нажимаем Sign out, авторизуемся пользователем my_first_test

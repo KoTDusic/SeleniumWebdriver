@@ -143,10 +143,69 @@ namespace TestFramework
             profilePage.ClickLikeButtonOnTopPost();
             return result;
         }
+        public bool TryAddToFriend(string user_url,string friend_nick)
+        {
+            driver.Navigate().GoToUrl(user_url);
+            Profile profilePage = new Profile(driver);
+            profilePage.ClickFriendButton();
+            profilePage = null;
+            MainPage mainPage = new MainPage(driver);
+            mainPage.OpenPage();
+            profilePage=mainPage.ProfileClick();
+            string friend_nick_on_page = profilePage.FindTopFriend();
+            driver.Navigate().GoToUrl(user_url);
+            profilePage.ClickFriendButton();
+            return String.Equals(friend_nick, friend_nick_on_page);
+        }
+        public void SendMessage(string user_url, string message)
+        {
+            driver.Navigate().GoToUrl(user_url);
+            Profile profilePage = new Profile(driver);
+            SendingMessagePage messagePage = profilePage.ClickSendMessage();
+            messagePage.SendMessage(message);
+        }
+        public void ChangeUserMuteStatus(string user_url)
+        {
+            driver.Navigate().GoToUrl(user_url);
+            Profile profilePage = new Profile(driver);
+            profilePage.MuteUser();
+        }
+        public bool TrySendMessage(string user_url, string message)
+        {
+            SendMessage(user_url, message);
+            SendingMessagePage messagePage = new SendingMessagePage(driver);
+            return messagePage.BlockedTest();
+        }
+        public bool TrySetInPlaylist(string game_url)
+        {
+            driver.Navigate().GoToUrl(game_url);
+            GamePage gamePage = new GamePage(driver);
+            gamePage.ChangePlaylistStatus();
+            RefreshPage();
+            string current_counter = gamePage.GetPlaylistCount();
+            gamePage.ChangePlaylistStatus();
+            return String.Equals(current_counter, "1");
+        }
+        public bool TrySetLike(string game_url)
+        {
+            driver.Navigate().GoToUrl(game_url);
+            GamePage gamePage = new GamePage(driver);
+            gamePage.ChangeLikeStatus();
+            RefreshPage();
+            string current_counter = gamePage.GetLikeCount();
+            gamePage.ChangeLikeStatus();
+            return String.Equals(current_counter, "1");
+        }
+        public string CheckRecevedMessage()
+        {
+            MainPage mainPage = new MainPage(driver);
+            Profile profilePage = mainPage.ProfileClick();
+            profilePage.OpenMessagesPage();
+            return profilePage.GetTopRecevedMessage();
+        }
         public void RefreshPage()
         {
             driver.Navigate().Refresh();
-
         }
     }
 }

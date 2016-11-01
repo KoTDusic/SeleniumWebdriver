@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Interactions;
+using System.Threading;
 
 namespace TestFramework.Pages
 {
@@ -21,7 +24,22 @@ namespace TestFramework.Pages
         private IWebElement Submiting_text;
         [FindsBy(How = How.Id, Using = "shout_box_submission_button")]
         private IWebElement Submiting_button;
-        
+        [FindsBy(How = How.XPath, Using = "//div[@id='profile_account_actions']/ul/li[1]/a")]
+        private IWebElement FriendButton;
+        [FindsBy(How = How.XPath, Using = "//div[@id='friends_pod']//ul//p")]
+        private IWebElement FriendName;
+        [FindsBy(How = How.XPath, Using = "//div[@id='profile_account_actions']/ul/li[2]/a")]
+        private IWebElement PrivateMessageButton;
+        [FindsBy(How = How.Id, Using = "my-messages-link")]
+        private IWebElement MyMessagesButton;
+        [FindsBy(How = How.XPath, Using = "//a[text()='Private Messages']")]
+        private IWebElement PrivateMessages;
+        [FindsBy(How = How.XPath, Using = "//div[@id='shouts_table']/div[1]/div[2]/div[1]/p")]
+        private IWebElement TopRecevedMessage;
+        [FindsBy(How = How.XPath, Using = "//div[@id='profile_account_actions']/ul/li[3]")]
+        private IWebElement MoreOptionsButton;
+        [FindsBy(How = How.XPath, Using = "//ul[@id='profile_tools_dropdown']/li[1]/span/a")]
+        private IWebElement MuteButton;
         public Profile(IWebDriver driver)
         {
             this.driver = driver;
@@ -84,7 +102,34 @@ namespace TestFramework.Pages
             string text = like_button.Text;
             if (text.Trim().Equals("Liked")) return true;
             else return false;
-            
+        }
+        public void ClickFriendButton()
+        {
+            FriendButton.Click();
+        }
+        public string FindTopFriend()
+        {
+            return FriendName.Text;
+        }
+        public void OpenMessagesPage()
+        {
+            MyMessagesButton.Click();
+            PrivateMessages.Click();
+        }
+        public string GetTopRecevedMessage()
+        {
+            return TopRecevedMessage.Text;
+        }
+        public SendingMessagePage ClickSendMessage()
+        {
+            PrivateMessageButton.Click();
+            return new SendingMessagePage(driver);
+        }
+
+        public void MuteUser()
+        {
+            Actions builder = new Actions(driver);
+            builder.MoveToElement(MoreOptionsButton).Click(MuteButton).Perform();
         }
     }
 }
