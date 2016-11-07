@@ -8,12 +8,12 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Interactions;
 using System.Threading;
+#pragma warning disable 649
 
 namespace TestFramework.Pages
 {
-    public class Profile
+    public class Profile : AbstractPage
     {
-        private IWebDriver driver;
         [FindsBy(How = How.XPath, Using = "//a[contains(text(), 'Edit Profile')]")]
         private IWebElement EditProfileButton;
         [FindsBy(How = How.XPath, Using = "//a[text()='Recent']")]
@@ -32,7 +32,7 @@ namespace TestFramework.Pages
         private IWebElement PrivateMessageButton;
         [FindsBy(How = How.Id, Using = "my-messages-link")]
         private IWebElement MyMessagesButton;
-        [FindsBy(How = How.XPath, Using = "//a[text()='Private Messages']")]
+        [FindsBy(How = How.XPath, Using = "//li[@id='pm_tab']/a")]
         private IWebElement PrivateMessages;
         [FindsBy(How = How.XPath, Using = "//div[@id='shouts_table']/div[1]/div[2]/div[1]/p")]
         private IWebElement TopRecevedMessage;
@@ -44,11 +44,8 @@ namespace TestFramework.Pages
         private string recent_games_list_locator = "//div[@id='dynamic-tab-1']/ul//p/strong/a";
         private string like_button_locator = "//ul[@id='feed_items_container']/li[1]//a[@class='like_link']";
         private string like_button_text_locator = "//ul[@id='feed_items_container']/li[1]//a[@class='like_link']/span";
-        public Profile(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        private string sucess_message_locator = "//div[@id='global']/div/h2";
+        public Profile(IWebDriver driver) : base(driver) { }
         public EditProfile ClickEditProfile()
         {
             EditProfileButton.Click();
@@ -60,16 +57,10 @@ namespace TestFramework.Pages
         }
         public bool ContainSucessMessage()
         {
-            IWebElement SucessMessage;
-            try
-            {
-                SucessMessage = driver.FindElement(By.XPath("//div[@id='global']/div/h2"));
-                return String.Equals(SucessMessage.Text, "Your profile has been updated.");
-            }
-            catch
-            {
-                return false;
-            }
+            IWebElement SucessMessage = driver.FindElement(By.XPath(sucess_message_locator));
+            if (SucessMessage == null) return false;
+            Log.For(this).Info("profile has been updated");
+            return String.Equals(SucessMessage.Text, "Your profile has been updated.");
         }
         public bool HasGameInRecent(string gameName)
         {
@@ -77,7 +68,11 @@ namespace TestFramework.Pages
            IReadOnlyCollection<IWebElement> games = driver.FindElements(By.XPath(recent_games_list_locator));
             foreach(IWebElement game in games)
             {
-                if (game.Text.Trim() == gameName) return true;
+                if (game.Text.Trim() == gameName)
+                {
+                    Log.For(this).InfoFormat("Game {0} finded", game.Text.Trim());
+                    return true;
+                }
             }
             return false;
         }
@@ -86,7 +81,11 @@ namespace TestFramework.Pages
             IReadOnlyCollection<IWebElement> posts = driver.FindElements(By.XPath(post_list_locator));
             foreach (IWebElement post in posts)
             {
-                if (post.Text.Trim().ToLower() == text.Trim().ToLower()) return true;
+                if (post.Text.Trim().ToLower() == text.Trim().ToLower())
+                {
+                    Log.For(this).InfoFormat("Post {0} finded", post.Text.Trim().ToLower());
+                    return true;
+                }
             }
             return false;
         }

@@ -5,26 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+#pragma warning disable 649
 
 namespace TestFramework.Pages
 {
      
-    public class SendingMessagePage
+    public class SendingMessagePage : AbstractPage
     {
-        IWebDriver driver;
-
         [FindsBy(How = How.Id, Using = "shout_content")]
         private IWebElement message_textarea;
         [FindsBy(How = How.Id, Using = "shout_form_submit")]
         private IWebElement submit_button;
         [FindsBy(How = How.Id, Using = "shout_error_message")]
         private IWebElement error_text;
-
-        public SendingMessagePage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        public SendingMessagePage(IWebDriver driver) : base(driver) { }
         public void SendMessage(string message)
         {
             message_textarea.Clear();
@@ -33,7 +27,7 @@ namespace TestFramework.Pages
         }
         public bool BlockedTest()
         {
-            return (error_text.Text.Length<10)?false:true;
+            return error_text.Text.Length>10;
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using TestFramework.Pages;
 using OpenQA.Selenium;
 using System.Threading;
+using log4net;
+using log4net.Config;
+
 //git/cmd в качестве имени версия программы
 namespace TestFramework
 {
@@ -26,6 +29,7 @@ namespace TestFramework
             MainPage mainPage = new MainPage(driver);
             mainPage.OpenPage();
             mainPage.Login(username, password);
+            Log.For(this).InfoFormat("Login whitch login = {0} and password = {1}", username, password);
         }
         public bool IsLoggedIn(string username)
         {
@@ -46,6 +50,7 @@ namespace TestFramework
             MainPage mainPage = new MainPage(driver);
             mainPage.OpenPage();
             mainPage.LogOut();
+            Log.For(this).Info("Log out success");
         }
 
         public bool SerachGame(string name)

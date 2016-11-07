@@ -8,25 +8,18 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace TestFramework.Pages
 {
-    public class SearchPage
+    public class SearchPage : AbstractPage
     {
-        IWebDriver driver;
-        public SearchPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        public SearchPage(IWebDriver driver) : base(driver) { }
         public bool ContainGame(string name)
         {
-            try
+            IWebElement game_name_label = driver.FindElement(By.XPath("//ol[@id='results']/li//h2//strong/a[text()='" + name + "']"));
+            if (game_name_label == null)
             {
-                IWebElement game_name_label = driver.FindElement(By.XPath("//ol[@id='results']/li//h2//strong/a[text()='" + name + "']"));
-                return String.Equals(game_name_label.Text, name);
+                Log.For(this).InfoFormat("Game {0} finded on search", game_name_label.Text);
+                return false; 
             }
-            catch
-            {
-                return false;
-            }
+            return String.Equals(game_name_label.Text, name);
         }
         public GamePage OpenGame(string game_name)
         {

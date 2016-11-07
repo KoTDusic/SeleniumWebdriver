@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+#pragma warning disable 649
 
 namespace TestFramework.Pages
 {
     
-    public class MainPage
+    public class MainPage : AbstractPage
     {
         private const string BASE_URL = "http://www.kongregate.com/";
-
-        private IWebDriver driver;
         [FindsBy(How = How.Id, Using = "welcome_username")]
         private IWebElement login;
         [FindsBy(How = How.Id, Using = "welcome_password")]
@@ -29,13 +28,10 @@ namespace TestFramework.Pages
         private IWebElement profile_button;
         private string profile_btn_locator = "//ul[@id='nav_welcome_box']/li[1]/a";
         private string error_message_locator = "//h1[@id='lightboxlogin_message']";
-        public MainPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        public MainPage(IWebDriver driver) : base(driver) { }
         public void OpenPage()
         {
+            Log.For(this).Info("Main page open");
             driver.Navigate().GoToUrl(BASE_URL);
         }
         public void Login(string name, string password)
@@ -61,7 +57,6 @@ namespace TestFramework.Pages
         public void LogOut()
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("signoutFromSite()");
-            //logout_button.Click();
         }
         public SearchPage FindGame(string name)
         {

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Threading;
+#pragma warning disable 649
 
 namespace TestFramework.Pages
 {
-    public class GameUploadPageStep2
+    public class GameUploadPageStep2 : AbstractPage
     {
-        IWebDriver driver;
         [FindsBy(How = How.XPath, Using = "//div[@id='game-icon-flash-fine-uploader']/div/div/div/input")]
         private IWebElement game_icon_input;
         [FindsBy(How = How.XPath, Using = "//input[@id='preview_version_game_file_uploaded_data']")]
@@ -26,19 +26,16 @@ namespace TestFramework.Pages
         private IWebElement checkbox_no_microtransactions;
         [FindsBy(How = How.XPath, Using = "//input[@id='flash_submission_button']")]
         private IWebElement upload_button;
-        
-        public GameUploadPageStep2(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        public GameUploadPageStep2(IWebDriver driver) : base(driver) { }
         public void FillFields()
         {
-            //IWebElement game_icon_input = driver.FindElement(By.XPath("//div[@id='game-icon-flash-fine-uploader']/div/div/div/input"));
-            //IWebElement game_file_input = driver.FindElement(By.XPath("//input[@id='preview_version_game_file_uploaded_data']"));
             string path = DriverInstance.GetFilesDirectory();
-            game_file_input.SendKeys(path + @"game\123.swf");
-            game_icon_input.SendKeys(path + @"game\icon.jpg");
+            string swf_path = path + @"game\123.swf";
+            string icon_path = path + @"game\icon.jpg";
+            game_file_input.SendKeys(swf_path);
+            game_icon_input.SendKeys(icon_path);
+            Log.For(this).InfoFormat("swf path = {0} ", swf_path);
+            Log.For(this).InfoFormat("swf path = {0} ", icon_path);
             checkbox_terms.Click();
             checkbox_creator_of_game.Click();
             checkbox_no_ads.Click();
@@ -47,11 +44,13 @@ namespace TestFramework.Pages
         public void ClickUpload()
         {
             Thread.Sleep(10000);
+            Log.For(this).Info("Uploading game...");
             upload_button.Click();
         }
         public bool WaitUpload(string gameName)
         {
             IWebElement game_name_field = driver.FindElement(By.XPath("//h1[text()='" + gameName + "']"));
+            if (game_name_field != null) Log.For(this).Info("Game upload");
             return game_name_field.Displayed;
         }
     }

@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+#pragma warning disable 649
 
 namespace TestFramework.Pages
 {
-    public class GameUploadPageStep1
+    public class GameUploadPageStep1 : AbstractPage
     {
-        IWebDriver driver;
         private const string DEVELOPER_URL = "http://www.kongregate.com/games/new";
         [FindsBy(How = How.Id, Using = "games-_title")]
         private IWebElement title_field;
@@ -22,12 +22,7 @@ namespace TestFramework.Pages
         private IWebElement game_category_field;
         [FindsBy(How = How.XPath, Using = "//div[@id='publish_submit']/input")]
         private IWebElement continue_button;
-        
-        public GameUploadPageStep1(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        public GameUploadPageStep1(IWebDriver driver) : base(driver) { }
         public void OpenPage()
         {
             driver.Navigate().GoToUrl(DEVELOPER_URL);
